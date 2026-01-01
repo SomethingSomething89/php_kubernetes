@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php_kubernetes
+  labels:
+    app: php_kubernetes
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: php_kubernetes
+  template:
+    metadata:
+      labels:
+        app: php_kubernetes
+    spec:
+      containers:
+        - name: php_kubernetes
+          image: us-central1-docker.pkg.dev/hopeful-keep-480204-e0/uwb/php_kubernetes:latest
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: regcred
